@@ -8,7 +8,7 @@
 
 ## What is this?
 
-The `.ada` format resolves Socrates' critique of writing: texts that cannot respond. One source document adapts infinitely — each reader receives content at their optimal cognitive level, style, and depth.
+The `.ada` format resolves Socrates' critique of writing: texts that cannot respond. One source document adapts infinitely — each reader receives content at their optimal cognitive level, style, and depth, and may ask for further refinements or clarifications.
 
 Not accessibility as accommodation. Accessibility as native architecture of communication.
 
