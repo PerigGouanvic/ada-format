@@ -23,6 +23,7 @@ Not accessibility as accommodation. Accessibility as native architecture of comm
 - Encoder: AI-assisted interactive structuring tool
 - Decoder: Personalized adaptation via user's AI
 - Philosophy: Computational maieutics, epistemic democratization
+- Encoding of user feedback (prewriting of messages to the author to refine the ada file (with ada -related context))
 
 ## Get Involved
 
