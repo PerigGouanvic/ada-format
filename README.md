@@ -15,7 +15,7 @@ Not accessibility as accommodation. Accessibility as native architecture of comm
 ## Status
 
 **Phase:** Concept manifesto + format specification in development  
-**Origin:** February 2026, dialogue on Socratic critique and Universal Design
+**Origin:** February 2026, dialogue on Socratic critique of books and Universal Design
 
 ## Architecture
 
