@@ -37,3 +37,7 @@ Not accessibility as accommodation. Accessibility as native architecture of comm
 ## License
 
 MIT
+
+---
+
+*Fait partie de l'écosystème `~/projects/` — voir [`../INDEX.md`](../INDEX.md) pour la vue d'ensemble et les recoupements (JP³ sera encodé en `.ada` ; d'autres projets à texte dense sont candidats).*
