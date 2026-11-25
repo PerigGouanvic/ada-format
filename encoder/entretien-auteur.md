@@ -1,5 +1,6 @@
 # Entretien de l'auteur
 
+> **Sous réserve (25 novembre 2026).** Perig a déjà travaillé ces questions sur un serveur auquel il n'a pas accès en ce moment. Ce texte est provisoire et sera confronté à ce travail dès qu'il sera disponible.
 
 <!-- Note pour les humains, l'IA peut l'ignorer : version 0.1, 25 novembre
 2026. À coller dans une IA avec le texte de l'auteur. Les points [H] sont des

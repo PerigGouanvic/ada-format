@@ -1,5 +1,6 @@
 # Construire un corpus ada
 
+> **Sous réserve (25 novembre 2026).** Perig a déjà travaillé ces questions sur un serveur auquel il n'a pas accès en ce moment. Ce texte est provisoire et sera confronté à ce travail dès qu'il sera disponible.
 
 Brouillon, 25 novembre 2026. Ce texte rassemble des décisions que Perig a
 déjà prises (fiches mémoire de juillet et septembre 2026) et la façon dont

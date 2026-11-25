@@ -1,5 +1,6 @@
 # JP³ : préparation de l’entretien (phase 1 faite à l’avance)
 
+> **Sous réserve (25 novembre 2026).** Perig a déjà travaillé ces questions sur un serveur auquel il n'a pas accès en ce moment. Ce texte est provisoire et sera confronté à ce travail dès qu'il sera disponible.
 
 Test du prompt [`encoder/entretien-auteur.md`](../../../../encoder/entretien-auteur.md)
 sur le manuel JP³ (`content/en/manual/MANUAL.md`, dépôt PerigGouanvic/JP3,
