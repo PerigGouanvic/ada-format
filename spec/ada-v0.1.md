@@ -39,6 +39,34 @@ being told to, still has to be tested. Until then, the person sending the file
 may add one line such as: *"This is an .ada file: unzip it and follow
 ada-usage.md."*
 
+### 2.1 Distribution and file type
+
+Phones and many desktop systems decide how to open a file from its extension
+and declared media type, not from its content. An archive named `.ada` is
+therefore not recognised as a zip, and no application is offered to open it.
+**[JP³]** This happened on a phone with `jp3.ada`. `.epub` and `.docx` have the
+same problem, solved by registered media types that `.ada` does not have.
+
+There is a second collision: `.ada` is already the usual extension for source
+code in the Ada programming language, and some systems map it to a text or
+source-code type.
+
+Until this is settled, v0.1 recommends:
+
+1. **Publish two copies**: `name.ada` (the canonical file) and `name.ada.zip`
+   (byte-identical, for phones and for systems that only recognise `.zip`).
+   Both are conforming `.ada` files.
+2. **Serve with `Content-Type: application/zip`** when publishing on the web.
+   **[H]** A dedicated type (for example `application/vnd.ada+zip`) would only
+   be useful once registered with IANA and known to operating systems; it is
+   not used in v0.1.
+3. **Most assistants accept a zip upload directly**, so the reader does not
+   need to unzip anything; what matters is that the file can be picked and
+   attached.
+
+Whether to keep `.ada` as the extension at all, given the collision with the
+Ada language, is an open question for v0.2.
+
 ## 3. `manifest.json`
 
 Validated by [`manifest-v0.1.schema.json`](manifest-v0.1.schema.json).
@@ -153,7 +181,7 @@ reader to think, not to receive an answer.
 
 A file conforms to v0.1 if:
 
-1. it is a valid zip archive with the extension `.ada`;
+1. it is a valid zip archive with the extension `.ada` or `.ada.zip`;
 2. it contains `manifest.json`, `ada-usage.md` and `prompt.md` at its root;
 3. `manifest.json` validates against `manifest-v0.1.schema.json`;
 4. every `claims[].citations` entry, if present, names an existing
@@ -182,6 +210,8 @@ python3 tools/validate_ada.py path/to/file.ada
   produces it. `jp3.ada` was produced from a dense summary
   (`drafts/jp3-resume-ada.md` in the JP3 repository); that process should be
   written down.
+- **Extension and media type.** Keep `.ada` despite the Ada language, or
+  move to another extension; register a media type or not (see §2.1).
 - **Long works.** One archive per work, or per chapter with an index?
 - **Integrity.** How a reader can check that the file matches what the author
   published (a hash, a signature).

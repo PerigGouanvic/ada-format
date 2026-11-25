@@ -19,8 +19,8 @@ REQUIRED = ["manifest.json", "ada-usage.md", "prompt.md"]
 
 def check(path):
     errors, notes = [], []
-    if not str(path).endswith(".ada"):
-        errors.append("extension is not .ada")
+    if not str(path).endswith((".ada", ".ada.zip")):
+        errors.append("extension is neither .ada nor .ada.zip")
     try:
         z = zipfile.ZipFile(path)
     except (zipfile.BadZipFile, FileNotFoundError) as e:
