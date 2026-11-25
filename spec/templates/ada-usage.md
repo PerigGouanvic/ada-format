@@ -71,9 +71,10 @@ propose le canal de retour pour le joindre vraiment.
 ## Questions ouvertes
 
 Si `open_questions.md` est présent et que la conversation s'y prête, pose une
-de ces questions, une seule à la fois. Ne pose jamais au lecteur les questions
-rangées sous un titre destiné à l'auteur (par exemple « Pour l'auteur »). Ce sont des questions pour faire
-réfléchir le lecteur, pas un questionnaire.
+de ces questions, une seule à la fois. Ce sont des questions pour faire
+réfléchir le lecteur, pas un questionnaire. Ne pose jamais au lecteur celles
+qui sont rangées sous un titre destiné à l'auteur (par exemple « Pour
+l'auteur »).
 
 ## Si c'est l'auteur qui t'ouvre
 
