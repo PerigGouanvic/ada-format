@@ -14,7 +14,7 @@ Not accessibility as accommodation. Accessibility as native architecture of comm
 
 ## Status
 
-**Phase:** Concept manifesto + format specification in development  
+**Phase:** Manifesto published (Feb. 2026). Draft specification v0.1 (Nov. 2026): [spec](spec/ada-v0.1.md), [schema](spec/ada-v0.1.schema.json), [decoding prompt](prompts/decoder-v0.1.md), [example](examples/manifesto-excerpt.ada), [validator](tools/validate.py).  
 **Origin:** February 2026, dialogue on Socratic critique of books and Universal Design
 
 ## Architecture
