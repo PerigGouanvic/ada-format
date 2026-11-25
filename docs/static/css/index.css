@@ -751,3 +751,20 @@ a:focus {
 
 
 
+
+/* ===== .ada page, November 2026 revision ===== */
+.ada-quote { font-style: italic; font-size: 1.15rem; border-left: 4px solid var(--primary-color); padding-left: 1.5rem; margin: 0 0 2rem; }
+.ada-quote footer { margin-top: .75rem; font-size: .85rem; font-style: normal; color: var(--text-secondary); }
+.ada-thesis p { font-size: 1.3rem; line-height: 1.6; margin-bottom: 1rem; }
+.ada-code { background: #0f172a; color: #e2e8f0; border-radius: var(--border-radius); padding: 1.25rem 1.5rem; font-size: .85rem; line-height: 1.55; overflow-x: auto; }
+.ada-code code { background: none; color: inherit; padding: 0; }
+.ada-dialogue { background: var(--background-primary); border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 1.25rem; height: 100%; box-shadow: var(--shadow-sm); }
+.ada-who { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-secondary); margin-bottom: .75rem; }
+.ada-q { background: var(--background-accent); border-radius: 12px 12px 12px 2px; padding: .6rem .9rem; margin-bottom: .75rem; font-weight: 500; }
+.ada-a { border-left: 3px solid var(--primary-color); padding-left: .9rem; }
+.ada-steps .column { padding-bottom: 1.5rem; }
+.ada-step-n { width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--primary-color); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+.ada-lineage p { color: var(--text-secondary); }
+.ada-appendix { border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: .9rem 1.25rem; margin-bottom: .75rem; background: var(--background-primary); }
+.ada-appendix summary { cursor: pointer; font-weight: 600; font-size: 1.05rem; }
+.ada-appendix[open] summary { margin-bottom: 1rem; }
