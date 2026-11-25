@@ -140,8 +140,8 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3">One example</h2>
     <p class="content">
-      Here is a fragment of what an <code>.ada</code> file for this very page could look like. It is plain text: a person can read it, and any current AI reads it without special software.
-      <span class="has-text-grey">(Illustrative. The schema is still being drafted.)</span>
+      An <code>.ada</code> file is a small package of readable text files: the source, a manifest, instructions for the AI that will answer, and the questions the author has left open. Here is a simplified view of what it could contain for this very page.
+      <span class="has-text-grey">(Illustrative. The structure is still being stabilized.)</span>
     </p>
 
 <pre class="ada-code"><code>ada: "0.1-draft"
@@ -217,7 +217,7 @@ feedback:
     </div>
     <div class="content">
       <p>
-        <strong>Why a file extension, then?</strong> Not as a barrier. An <code>.ada</code> file is structured plain text (YAML or JSON) that current AIs read natively. The extension is a signal: this text is meant to be questioned, and it carries instructions for whoever answers.
+        <strong>Why a file extension, then?</strong> Not as a barrier. An <code>.ada</code> file is a zip archive of plain text files (Markdown and JSON) that a person can open and current AIs read natively. The extension is a signal: this text is meant to be questioned, and it carries instructions for whoever answers.
       </p>
     </div>
   </div>
@@ -232,7 +232,7 @@ feedback:
         <li><strong>Fidelity is bounded, not guaranteed.</strong> The file narrows what an AI can say in the author's name. It does not make the AI infallible.</li>
         <li><strong>It needs an AI.</strong> A reader without access is left with the plain text. Public access (libraries, community services) is part of the question, not an afterthought.</li>
         <li><strong>Some difficulty is worth keeping.</strong> An author can mark passages where the effort of reading is the point, and ask the AI not to smooth them away.</li>
-        <li><strong>It is early.</strong> There is no published schema yet and no tested encoder. See <a href="#status">where things stand</a>.</li>
+        <li><strong>It is early.</strong> There is one real <code>.ada</code> file so far (JP³), no stable schema and no tested encoder. See <a href="#status">where things stand</a>.</li>
       </ul>
     </div>
   </div>
@@ -245,9 +245,9 @@ feedback:
     <div class="content">
       <p>This page is a manifesto, revised in November 2026. The next steps, in order:</p>
       <ol>
-        <li>Draft schema v0.1, published in this repository.</li>
+        <li>Document the structure of the first <code>.ada</code> file (JP³) as a draft v0.1, in this repository.</li>
         <li>An interviewing prompt for authors, and a reading prompt for readers' AIs (needed until AIs recognize the format on their own).</li>
-        <li><strong>A first real case: JP³</strong>, a long and dense text, encoded in <code>.ada</code> and offered to readers with very different backgrounds.</li>
+        <li><strong>A first real case: JP³</strong>, a long and dense text, already packaged as <code>jp3.ada</code>, to be tested with readers of very different backgrounds.</li>
         <li>This page itself, published as <code>manifesto.ada</code>.</li>
         <li>What readers ask, and what the file failed to cover, used to revise the schema.</li>
       </ol>
@@ -292,7 +292,7 @@ feedback:
     <details class="ada-appendix" id="appendix-a">
       <summary>A. Draft structure of an .ada file</summary>
       <div class="content">
-        <p>Working proposal, subject to change once the first real case (JP³) has been encoded.</p>
+        <p>The first real <code>.ada</code> file (JP³, September 2026) is a zip archive containing <code>manifest.json</code>, <code>ada-usage.md</code>, <code>prompt.md</code> and <code>open_questions.md</code>. The list below describes what these files are meant to carry; it will be revised from that case.</p>
         <ul>
           <li><strong>Source</strong>: the full original text, unchanged.</li>
           <li><strong>Intent</strong>: what the author wants the reader to come away with.</li>
