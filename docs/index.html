@@ -140,14 +140,14 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3">One example</h2>
     <p class="content">
-      An <code>.ada</code> file is a small package of readable text files: the source, a manifest, instructions for the AI that will answer, and the questions the author has left open. Here is a simplified view of what it could contain for this very page.
+      An <code>.ada</code> file is a small package of readable text files: the text itself (as the author wants the AI to know it), a manifest, instructions for the AI that will answer, and the questions the author has left open. Here is a simplified view of what it could contain for this very page.
       <span class="has-text-grey">(Illustrative. The structure is still being stabilized.)</span>
     </p>
 
 <pre class="ada-code"><code>ada: "0.1-draft"
 title: "The .ada Format"
 author: "Perig Gouanvic"
-source: "index.html"          # the full text travels with the file
+text: "prompt.md"             # the text, written for the AI that answers
 
 intent: &gt;
   Show writers of dense texts that they can stay precise
@@ -159,7 +159,7 @@ concepts:
     prerequisites: []
     misreadings:
       - reading: ".ada simplifies texts"
-        correction: "The source stays intact. Adaptation happens in dialogue, within the author's limits."
+        correction: "Nothing is cut once and for all. Adaptation happens in dialogue, within the author's limits."
 
 objections:
   - question: "Isn't this just asking an AI for a summary?"
@@ -245,7 +245,7 @@ feedback:
     <div class="content">
       <p>This page is a manifesto, revised in November 2026. The next steps, in order:</p>
       <ol>
-        <li>Document the structure of the first <code>.ada</code> file (JP³) as a draft v0.1, in this repository.</li>
+        <li>Stabilize the draft specification v0.1 (see <a href="#appendix-a">appendix A</a>), based on the first <code>.ada</code> file.</li>
         <li>An interviewing prompt for authors, and a reading prompt for readers' AIs (needed until AIs recognize the format on their own).</li>
         <li><strong>A first real case: JP³</strong>, a long and dense text, already packaged as <code>jp3.ada</code>, to be tested with readers of very different backgrounds.</li>
         <li>This page itself, published as <code>manifesto.ada</code>.</li>
@@ -292,9 +292,9 @@ feedback:
     <details class="ada-appendix" id="appendix-a">
       <summary>A. Draft structure of an .ada file</summary>
       <div class="content">
-        <p>The first real <code>.ada</code> file (JP³, September 2026) is a zip archive containing <code>manifest.json</code>, <code>ada-usage.md</code>, <code>prompt.md</code> and <code>open_questions.md</code>. The list below describes what these files are meant to carry; it will be revised from that case.</p>
+        <p>The first real <code>.ada</code> file (JP³, September 2026) is a zip archive containing <code>manifest.json</code>, <code>ada-usage.md</code>, <code>prompt.md</code> and <code>open_questions.md</code>. The list below describes what these files are meant to carry. The draft specification gives the details: <a href="https://github.com/PerigGouanvic/ada-format/blob/main/spec/ada-v0.1.md" target="_blank">spec/ada-v0.1.md</a>, <a href="https://github.com/PerigGouanvic/ada-format/blob/main/spec/manifest-v0.1.schema.json" target="_blank">manifest schema</a>, and a <a href="https://github.com/PerigGouanvic/ada-format/blob/main/tools/validate_ada.py" target="_blank">validator</a>.</p>
         <ul>
-          <li><strong>Source</strong>: the full original text, unchanged.</li>
+          <li><strong>Text</strong>: the content as the author wants the AI to know it. In JP³ it is a version rewritten for the AI; whether the original should also travel unchanged is an open question.</li>
           <li><strong>Intent</strong>: what the author wants the reader to come away with.</li>
           <li><strong>Concepts</strong>: key claims, their dependencies (what must be understood first), known misreadings.</li>
           <li><strong>Entry points</strong>: a short summary, a central question, a concrete case, an analogy.</li>
@@ -311,7 +311,7 @@ feedback:
       <summary>B. How it compares with existing approaches</summary>
       <div class="content">
         <ul>
-          <li><strong>Plain language, Easy Read (FALC)</strong>: one simplified version, written by hand. <code>.ada</code> keeps the original and lets each reader move between simple and full detail.</li>
+          <li><strong>Plain language, Easy Read (FALC)</strong>: one simplified version, written by hand. <code>.ada</code> keeps the full content and lets each reader move between simple and full detail.</li>
           <li><strong>Universal Design for Learning (UDL)</strong>: a framework for anticipating learner diversity in teaching. <code>.ada</code> applies the same idea to any document, written by anyone.</li>
           <li><strong>Prompt templates</strong>: reusable instructions for developers. <code>.ada</code> is written by an author for readers, about one specific text.</li>
           <li><strong>Model Context Protocol (MCP)</strong>: infrastructure connecting AI applications to tools and data. <code>.ada</code> is not infrastructure; it is a document between two people, with an AI in the middle.</li>
