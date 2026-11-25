@@ -158,7 +158,7 @@ Instructions that bind the reader's AI for this document.
 
 | Field | Meaning |
 |---|---|
-| `voice` | How the document should speak (`first_person_author`, `neutral_guide`, `tutor`). Default: `neutral_guide`. **[H]** "The document's voice" is attractive but can make a model put words in the author's mouth; a neutral guide is the safer default. |
+| `voice` | How the AI should speak (`first_person_author`, `neutral_guide`, `tutor`). Default: `first_person_author`, following the first reader test (see `ada-v0.1.md` §4); `neutral_guide` suits third-party encodings. |
 | `default_entry` | Section id to start from when the reader gives no direction. |
 | `rules` | Extra rules in plain language, added to the decoding prompt. |
 | `prompt` | Optional embedded copy of the decoding prompt (see §2). |

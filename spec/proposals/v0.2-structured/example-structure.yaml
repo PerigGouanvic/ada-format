@@ -103,7 +103,7 @@ questions:
     see: [trilemma]
 
 decoder:
-  voice: neutral_guide
+  voice: first_person_author
   default_entry: socrates
 
 feedback:

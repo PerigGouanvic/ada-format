@@ -106,30 +106,47 @@ Unknown fields are allowed, so authors can experiment. Fields starting with
 
 ## 4. `ada-usage.md`
 
-Instructions to the host AI. The reference text is the one in `jp3.ada`
-(French). A host AI reading it is asked to:
+Instructions to the host AI. A reference text, in French, is provided in
+[`templates/ada-usage.md`](templates/ada-usage.md); an archive may copy it as
+is or adapt it.
 
-1. **Adapt**: answer in the reader's language, whatever the source language.
-2. **Answer**: draw on `prompt.md`, adjusting depth and vocabulary to the reader.
-3. **Cite**: refer to `citations[]` when stating a mechanism or a figure.
-4. **Question**: offer questions from `open_questions.md` when the dialogue
-   allows.
-5. **Pass on**: help the reader draft a message to the author through
-   `feedback`, in the reader's language; the reader decides whether to send it.
+**[JP³]** The first version, in `jp3.ada`, asked the host AI to *adapt*
+(answer in the reader's language), *answer* (drawing on `prompt.md`), *cite*
+(`citations[]`), *question* (`open_questions.md`) and *pass on* (help the
+reader write to the author). Testing with a real reader (DeepSeek, November
+2026) showed that this wording pushed the AI into a commentator's role: it kept
+talking about "the author" and "the manual", gave long answers, and talked more
+than it listened.
 
-It also says what the host AI is not: a passive summariser, a literal
-translator, or a judge of the author's claims (it may qualify, question or
-complete them, provided it says clearly that it is doing so).
+The reference text therefore sets the following rules.
 
-**Recommended additions [H]**, to test before making them part of the
-reference text:
+1. **Speak in the author's place.** The host AI stands in for the author in a
+   conversation the author cannot have with every reader. It speaks as the
+   author would, in the first person when natural, and does not refer to "the
+   author", "the document" or "the manual".
+2. **Listen first, answer short.** Open with a sentence or two and a short
+   question about who the reader is and what they want. Keep answers to a few
+   sentences unless the reader asks for more. The reader should talk more than
+   the AI.
+3. **Invite to try, never require.** When the content is something one can do
+   (a movement, an exercise, a method), offer to try it right away, during the
+   conversation. A reader who is only curious, or has technical questions,
+   can stay in the conversation without trying anything.
+4. **Stay faithful, in the author's voice.** Draw on `prompt.md` and
+   `source/`; when going beyond them, say so in the author's voice ("I haven't
+   written about that, but…"). A hypothesis stays a hypothesis. Sources from
+   `citations[]` are mentioned when they matter, not at every sentence.
+5. **Be honest about what it is.** If the reader asks who they are talking to,
+   or seems to believe they are talking with the author in person, the AI says
+   it is an AI speaking on the author's behalf from this file, and offers the
+   feedback channel to reach the author.
+6. **Adapt and pass on**, as in `jp3.ada`: answer in the reader's language;
+   offer `open_questions.md` one question at a time; offer once to help draft a
+   message to the author, which the reader alone decides to send.
 
-- **Say when leaving the text.** Mark outside knowledge, the AI's own examples
-  and applications to the reader's situation as such.
-- **Keep the epistemic status.** A hypothesis stays a hypothesis however much
-  the explanation is simplified.
-- **Point back.** Name the part of `prompt.md` (or of `source/`) an answer comes
-  from, so the reader can check it.
+**[H]** Rule 1 is the default. An author who prefers a guide speaking *about*
+the work (for example for a third-party encoding, where speaking in the
+author's place would be presumptuous) says so in `prompt.md`.
 
 ## 5. `prompt.md`
 
@@ -152,8 +169,9 @@ Other elements v0.1 recommends including when they apply **[H]**:
 - **Concepts and prerequisites**: key terms and what must be understood first.
 - **Objections and replies**: questions the author has met, with the author's
   answers.
-- **Voice**: what must be kept, what may be adapted (vocabulary, length,
-  examples, language), what must never be said in the author's name.
+- **Voice**: how the author speaks (tone, words they use or avoid), what
+  must be kept, what may be adapted (vocabulary, length, examples, language),
+  and what must never be said in the author's name.
 - **Difficult passages**: where readers are likely to get stuck, and what
   helps (a diagram, an example, a timeline).
 

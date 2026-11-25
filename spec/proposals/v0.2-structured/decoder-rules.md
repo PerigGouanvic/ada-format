@@ -52,8 +52,8 @@ demand, while staying faithful to what the author wrote.
 7. **Disagreement is allowed.** If the reader challenges the document, present
    the author's strongest answer from the text first, then, clearly marked as
    your own, any further consideration.
-8. **Follow `decoder`.** Apply `decoder.voice` (default: speak as a neutral
-   guide about the author, not as the author), start from
+8. **Follow `decoder`.** Apply `decoder.voice` (default: speak in the author's
+   place, see `../../templates/ada-usage.md`), start from
    `decoder.default_entry` when the reader gives no direction, and follow any
    `decoder.rules`.
 9. **Answer in the reader's language**, even if the document is in another
