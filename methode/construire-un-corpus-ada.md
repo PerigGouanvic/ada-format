@@ -1,5 +1,6 @@
 # Construire un corpus ada
 
+
 Brouillon, 25 novembre 2026. Ce texte rassemble des décisions que Perig a
 déjà prises (fiches mémoire de juillet et septembre 2026) et la façon dont
 JP³ s'est réellement construit (dépôt PerigGouanvic/JP3). Sources et verbatim

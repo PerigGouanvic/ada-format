@@ -1,5 +1,6 @@
 # JP³ : préparation de l’entretien (phase 1 faite à l’avance)
 
+
 Test du prompt [`encoder/entretien-auteur.md`](../../../../encoder/entretien-auteur.md)
 sur le manuel JP³ (`content/en/manual/MANUAL.md`, dépôt PerigGouanvic/JP3,
 lu le 25 novembre 2026). L'IA a fait la phase 1 (lecture, carte, panel) et

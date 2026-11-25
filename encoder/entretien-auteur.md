@@ -1,5 +1,6 @@
 # Entretien de l'auteur
 
+
 <!-- Note pour les humains, l'IA peut l'ignorer : version 0.1, 25 novembre
 2026. À coller dans une IA avec le texte de l'auteur. Les points [H] sont des
 hypothèses à vérifier sur les premiers entretiens. -->
