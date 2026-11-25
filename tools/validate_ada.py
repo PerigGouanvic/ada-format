@@ -29,6 +29,8 @@ def check(path):
     errors += [f"missing {n} at the archive root" for n in REQUIRED if n not in names]
     if "open_questions.md" not in names:
         notes.append("no open_questions.md (optional)")
+    if not any(n.startswith("source/") and not n.endswith("/") for n in names):
+        notes.append("no original text in source/ (recommended, see spec section 5.1)")
     if "manifest.json" in names:
         try:
             manifest = json.loads(z.read("manifest.json").decode("utf-8"))

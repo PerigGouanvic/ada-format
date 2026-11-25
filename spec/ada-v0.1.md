@@ -27,7 +27,7 @@ by one, but the file is meant to be handed whole to an AI.
 | `ada-usage.md` | yes | Instructions for the AI that opens the file (the "host AI"). |
 | `prompt.md` | yes | The core content, written for the host AI. |
 | `open_questions.md` | no | Socratic questions the host AI may put to the reader. |
-| `source/` | no | **[H]** The original text, unchanged (for example `source/article.md`). |
+| `source/` | recommended | The original text, unchanged (for example `source/article.md`). See §5.1. |
 | `attachments/` | no | Complementary reference documents. |
 | `media/` | no | Images, diagrams. |
 
@@ -129,6 +129,19 @@ Other elements v0.1 recommends including when they apply **[H]**:
 - **Difficult passages**: where readers are likely to get stuck, and what
   helps (a diagram, an example, a timeline).
 
+### 5.1 `prompt.md` and the original text
+
+`prompt.md` is a rewriting of the work for the AI. Since a rewriting can drift,
+an archive **should** also carry the original text, unchanged, in `source/`
+(Markdown or plain text preferred; one file per part of a long work). The host
+AI then has both: `prompt.md` says how to approach the work and its readers,
+`source/` says exactly what the author wrote, and the reader can ask to see the
+original passage.
+
+**[H]** When the two differ on what the author claims, the original wins, and
+the host AI tells the reader about the difference. `jp3.ada` does not yet
+include its original article; adding it is the first update to make.
+
 ## 6. `open_questions.md`
 
 **[JP³]** A numbered list of questions addressed **to the reader**, meant to
@@ -146,19 +159,21 @@ A file conforms to v0.1 if:
 4. every `claims[].citations` entry, if present, names an existing
    `citations[].id`.
 
+An archive without `source/` still conforms; the validator notes its absence.
+
 [`tools/validate_ada.py`](../tools/validate_ada.py) checks all four:
 
 ```
 python3 tools/validate_ada.py path/to/file.ada
 ```
 
-`jp3.ada` passes.
+`jp3.ada` passes, with a note that it has no `source/`.
 
 ## 8. Open questions for v0.2
 
-- **Source text inside or outside.** `jp3.ada` carries a text rewritten for
-  the AI, not the original article. Should the original travel in `source/`,
-  and which one wins when they differ?
+- **Source precedence.** Test on real readings whether the rule of §5.1
+  (the original wins over `prompt.md`) holds, or whether some rewritings are
+  meant to correct the original.
 - **Structured layer.** Should a machine-readable `structure.yaml`
   (sections, concepts, claim status, anticipated questions) sit next to
   `prompt.md`? A first draft is in
