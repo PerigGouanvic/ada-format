@@ -14,12 +14,12 @@ Not accessibility as accommodation. Accessibility as native architecture of comm
 
 ## Status
 
-**Phase:** Manifesto published (Feb. 2026). Draft specification v0.1 (Nov. 2026): [spec](spec/ada-v0.1.md), [schema](spec/ada-v0.1.schema.json), [decoding prompt](prompts/decoder-v0.1.md), [example](examples/manifesto-excerpt.ada), [validator](tools/validate.py).  
+**Phase:** Manifesto published (Feb. 2026). First real `.ada` file: [`jp3.ada`](https://github.com/PerigGouanvic/JP3/blob/main/jp3.ada) (Sept. 2026). Draft specification v0.1 (Nov. 2026): [spec](spec/ada-v0.1.md), [manifest schema](spec/manifest-v0.1.schema.json), [validator](tools/validate_ada.py).  
 **Origin:** February 2026, dialogue on Socratic critique of books and Universal Design
 
 ## Architecture
 
-- File format: Structured JSON/YAML with cognitive metadata
+- File format: zip archive of text files (`manifest.json`, `ada-usage.md`, `prompt.md`, `open_questions.md`), see [spec/ada-v0.1.md](spec/ada-v0.1.md)
 - Encoder: AI-assisted interactive structuring tool
 - Decoder: Personalized adaptation via user's AI
 - Philosophy: Computational maieutics, epistemic democratization

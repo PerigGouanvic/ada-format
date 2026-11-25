@@ -441,42 +441,24 @@
 <!-- Appendix A -->
 <section class="section" id="appendix-a">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Appendix A: Technical Specification (v0.1 draft)</h2>
+    <h2 class="title is-3">Appendix A: Detailed Technical Specifications</h2>
     <div class="content has-text-justified">
-      <p><strong>Status: draft v0.1, November 2026.</strong> The specification, schema, decoding prompt and a first example are in the <a href="https://github.com/PerigGouanvic/ada-format">GitHub repository</a>. Choices marked as hypotheses will be tested on the first real documents.</p>
-
+      <p><strong>In development.</strong></p>
       <p>
-        v0.1 has one job: let any general-purpose AI assistant turn a file into a faithful conversation with the document, with no software beyond the assistant itself. An <code>.ada</code> file is plain YAML, readable by people and by models. Almost every field is optional, so a valid file can be very small.
+        The <code>.ada</code> format uses structured JSON/YAML according to a defined schema. Each document section contains:
       </p>
-
-      <h4 class="title is-5">What a v0.1 file contains</h4>
       <ul>
-        <li><strong><code>meta</code></strong> (required): title, language, authors, license, and whether the text is the author's own or someone else's text encoded by a third party.</li>
-        <li><strong><code>sections</code></strong> (required): the source text, verbatim, in reading order. Each section can add a short summary, author-approved reformulations at three levels (<em>plain</em>, <em>standard</em>, <em>expert</em>), the concepts it relies on, its claims with their status (<em>established</em>, <em>argued</em>, <em>hypothesis</em>, <em>speculative</em>), known stumbling points, and links to other sections.</li>
-        <li><strong><code>intent</code></strong>: the central question, the thesis, the points no adaptation may drop, and the reader profiles the author anticipated.</li>
-        <li><strong><code>concepts</code></strong>: key terms with the author's definitions and their prerequisites, which together form the dependency graph.</li>
-        <li><strong><code>questions</code></strong>: questions the author expects, with pointers to the passages that answer them.</li>
-        <li><strong><code>decoder</code></strong> and <strong><code>feedback</code></strong>: rules for the reader's AI, and the return channel through which a reader can draft a message to the author.</li>
-      </ul>
-
-      <h4 class="title is-5">The decoding contract</h4>
-      <ol>
-        <li><strong>The source text is the authority.</strong> Adaptations read the text; they never replace it.</li>
-        <li><strong>Leaving the text is signalled.</strong> Outside knowledge, extrapolation and the AI's own views are marked as such.</li>
-        <li><strong>Epistemic status survives simplification.</strong> A hypothesis stays a hypothesis at every level.</li>
-        <li><strong>Every answer points back</strong> to the section it comes from, so the reader can check.</li>
-        <li><strong>The reader writes back</strong>, if the author asks for it: the AI helps draft a message; the reader decides whether to send it.</li>
-      </ol>
-
-      <h4 class="title is-5">Files</h4>
-      <ul>
-        <li><a href="https://github.com/PerigGouanvic/ada-format/blob/main/spec/ada-v0.1.md">Specification v0.1</a> and <a href="https://github.com/PerigGouanvic/ada-format/blob/main/spec/ada-v0.1.schema.json">JSON Schema</a></li>
-        <li><a href="https://github.com/PerigGouanvic/ada-format/blob/main/prompts/decoder-v0.1.md">Decoding prompt v0.1</a>, to send with the file</li>
-        <li><a href="https://github.com/PerigGouanvic/ada-format/blob/main/examples/manifesto-excerpt.ada">Example: two sections of this manifesto in <code>.ada</code></a></li>
-        <li><a href="https://github.com/PerigGouanvic/ada-format/blob/main/tools/validate.py">Validator</a> (schema and internal references)</li>
+        <li>Primary content</li>
+        <li>Formulation variants (3-5 complexity levels)</li>
+        <li>Alternative examples (adapted to different backgrounds)</li>
+        <li>Conceptual dependencies (explicit graph)</li>
+        <li>Adaptation metadata (cognitive tags, target length, available styles)</li>
       </ul>
       <p>
-        Not yet specified: the encoding prompt (the interview through which an author produces a file), long multi-part works, translations, and integrity checks against the published original.
+        Current AIs (Claude, ChatGPT, etc.) read these files natively — the <code>.ada</code> extension is semantic signal, not technical barrier.
+      </p>
+      <p>
+        Complete documentation and JSON schema: [GitHub repository coming]
       </p>
     </div>
   </div>
@@ -673,35 +655,32 @@
     <h2 class="title is-3">Appendix E: Roadmap and Implementation</h2>
     <div class="content has-text-justified">
       
-      <p><em>Updated November 2026. The original plan announced a schema by mid-2026 and tools by the end of 2026. Writing the manifesto came first; the schema is now in draft. The phases below replace dates with conditions: each one starts when the previous one has produced evidence.</em></p>
-
-      <h4 class="title is-5">Done</h4>
+      <h4 class="title is-5">Phase 1: Prototype and Validation (Q1-Q2 2026)</h4>
       <ul>
-        <li>Manifesto published (February 2026)</li>
-        <li>Draft specification v0.1: YAML schema, decoding prompt, validator, first example (November 2026)</li>
+        <li>Define JSON/YAML schema for <code>.ada</code> documents v0.1</li>
+        <li>Create standardized encoding prompt (interactive author ↔ AI process)</li>
+        <li>Create standardized decoding prompt (adapted version generation)</li>
+        <li>In this phase: authors send <code>.ada</code> file + decoding prompt file (before universal adoption)</li>
+        <li>Test with 5-10 varied documents (scientific article, philosophical essay, technical documentation, legal text)</li>
+        <li>Empirical validation: 20-30 readers with diverse profiles test generated versions</li>
       </ul>
 
-      <h4 class="title is-5">Phase 1: First real document</h4>
+      <h4 class="title is-5">Phase 2: Tools and Ecosystem (Q3-Q4 2026)</h4>
       <ul>
-        <li>Encode a complete, long, real text in <code>.ada</code>. The first candidate is <strong>JP³</strong></li>
-        <li>Publish the complete manifesto in <code>.ada</code> (replacing the "coming soon" above)</li>
-        <li>Write the encoding prompt from what that work actually required</li>
-        <li>Delivery in this phase: <code>.ada</code> file + decoding prompt file, sent together</li>
-        <li>Test the same files on several assistants (Claude, ChatGPT, Mistral, a local model) and note where they diverge</li>
-      </ul>
-
-      <h4 class="title is-5">Phase 2: Readers and a v0.2</h4>
-      <ul>
-        <li>Small reader study: readers with different profiles read the same <code>.ada</code> files and report what helped and what failed</li>
-        <li>Encode 3 to 5 documents of other kinds (scientific article, legal text, technical documentation, someone else's philosophical text)</li>
-        <li>Revise the format into v0.2 from those results</li>
-      </ul>
-
-      <h4 class="title is-5">Phase 3: Tools and wider use</h4>
-      <ul>
-        <li>Simple web encoder, editor plugins (Markdown, Obsidian), a small library</li>
+        <li>Develop simple web encoder (interface to create <code>.ada</code> without coding)</li>
+        <li>Plugin for Markdown/Obsidian editors</li>
+        <li>Python library for programmatic manipulation</li>
+        <li>Complete documentation + GitHub examples</li>
         <li>Early adopter community (researchers, educators, content creators)</li>
-        <li>Only then: a formal specification, and discussion with platforms and libraries (arXiv, OpenEdition)</li>
+      </ul>
+
+      <h4 class="title is-5">Phase 3: Standards and Adoption (2027)</h4>
+      <ul>
+        <li>Propose formal specification (RFC or equivalent)</li>
+        <li>Native interpreters in major AI platforms (Claude, ChatGPT, etc.)</li>
+        <li>Integration with academic libraries (arXiv, OpenEdition, etc.)</li>
+        <li>Quality certifications (validators verifying encoded adaptation richness)</li>
+        <li>Cognitive accessibility impact studies</li>
       </ul>
 
       <h4 class="title is-5" style="margin-top: 2rem;">Major Functionality: Encoding Others' Existing Texts</h4>
@@ -738,7 +717,7 @@
         <li><strong>Content Creators:</strong> Early adopters, real use cases</li>
         <li><strong>Legal Scholars:</strong> Copyright, fair use, accessibility law analysis</li>
       </ul>
-      <p>GitHub repository: <a href="https://github.com/PerigGouanvic/ada-format">github.com/PerigGouanvic/ada-format</a> (issues and pull requests welcome)</p>
+      <p>GitHub repository: [to be created]</p>
     </div>
   </div>
 </section>

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Validate .ada files against the v0.1 schema and check internal references.
 
-Usage: python3 tools/validate.py FILE.ada [FILE.ada ...]
+Usage: python3 validate_structure.py FILE.yaml [FILE.yaml ...]
 Requires: pyyaml, jsonschema
 """
 import json, sys, pathlib
 import yaml, jsonschema
 
-SCHEMA = json.loads((pathlib.Path(__file__).parent.parent / "spec" / "ada-v0.1.schema.json").read_text())
+SCHEMA = json.loads((pathlib.Path(__file__).parent / "structure.schema.json").read_text())
 
 def refs(doc):
     ids = {s["id"] for s in doc.get("sections", [])}
