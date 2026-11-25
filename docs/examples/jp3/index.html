@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JP³ in .ada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column of argument, then a two-column before/after that stacks on phones. */
+:root {
+  --bg: #f6f7f5;
+  --surface: #ffffff;
+  --fg: #1d2420;
+  --muted: #5b665f;
+  --line: #d9dfda;
+  --accent: #2f6b4f;
+  --accent-soft: #e3efe8;
+  --before: #8a5a2b;
+  --before-soft: #f4ece3;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141917; --surface: #1c2320; --fg: #e4ebe6; --muted: #9aa8a0; --line: #2e3833;
+    --accent: #7cc4a0; --accent-soft: #1f3329; --before: #d9a46e; --before-soft: #33281d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141917; --surface: #1c2320; --fg: #e4ebe6; --muted: #9aa8a0; --line: #2e3833;
+  --accent: #7cc4a0; --accent-soft: #1f3329; --before: #d9a46e; --before-soft: #33281d;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 64px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; display: grid; gap: 40px; }
+.intro { max-width: 680px; display: grid; gap: 12px; }
+.eyebrow { font-family: var(--f-mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 5vw, 44px); }
+h2 { font-size: 24px; }
+h3 { font-size: 18px; }
+p { margin: 0; }
+.lede { font-size: 18px; color: var(--muted); }
+code, .mono { font-family: var(--f-mono); font-size: .9em; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+@media (max-width: 820px) { .compare { grid-template-columns: 1fr; } }
+.col { min-width: 0; display: grid; gap: 16px; }
+.tag { display: inline-block; font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+.tag.before { background: var(--before-soft); color: var(--before); }
+.tag.after { background: var(--accent-soft); color: var(--accent); }
+
+.page {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 20px; font-size: 14px; line-height: 1.55; color: var(--fg);
+  max-height: 420px; overflow: auto; position: relative;
+}
+.page h4 { font-family: var(--f-display); font-size: 16px; margin: 0 0 8px; }
+.page p + p { margin-top: 10px; }
+.page .src { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.facts { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 15px; }
+.facts li { padding-left: 18px; position: relative; }
+.facts li::before { content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 2px; background: currentColor; opacity: .5; }
+
+.tree { font-family: var(--f-mono); font-size: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; overflow-x: auto; margin: 0; line-height: 1.8; }
+.tree b { color: var(--accent); font-weight: 500; }
+.tree span { color: var(--muted); }
+
+.rule { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; font-size: 15px; }
+.rule .who { font-family: var(--f-mono); font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
+
+.dialogues { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 820px) { .dialogues { grid-template-columns: 1fr; } }
+.dialogue { min-width: 0; display: grid; gap: 12px; align-content: start; }
+.reader-meta { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.msg { border-radius: 8px; padding: 12px 14px; font-size: 15px; }
+.msg.reader { background: var(--before-soft); margin-right: 32px; }
+.msg.host { background: var(--surface); border: 1px solid var(--line); margin-left: 32px; }
+.msg p + p { margin-top: 8px; }
+.cite { font-family: var(--f-mono); font-size: 12px; color: var(--accent); white-space: nowrap; }
+.drew { font-size: 13px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; }
+
+.note { font-size: 14px; color: var(--muted); max-width: 680px; border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 8px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="intro">
+    <span class="eyebrow">Worked example · JP³ manual, §2</span>
+    <h1>One chapter, before and after .ada</h1>
+    <p class="lede">JP³ is a practice of jogging in place, at your own pace, in your own place, written up by Perig Gouanvic in a 300 KB English manual. Here is its second chapter, “The Three Ps”, as a static page and as an .ada file that an AI reads and then discusses with each reader.</p>
+  </header>
+
+  <section class="compare" aria-label="Before and after">
+    <div class="col">
+      <span class="tag before">Before · the page</span>
+      <h2>24 KB of English, one order for everyone</h2>
+      <div class="page" tabindex="0" aria-label="Excerpt of the source text">
+        <div class="src">MANUAL.md · §2.3.2 Barefoot — access condition to the regime, not an amplifier</div>
+        <p>The earlier framing, carried over from the article, treated bare feet as an <strong>amplifier</strong>, “strongly recommended to maximise proprioceptive feedback”. Experience since 2026-08 supports a stronger status. Barefoot is a <strong>permissive condition</strong> of the JP³ core…</p>
+        <p><strong>Mechanistic hypothesis.</strong> Without bare plantar contact, the brain does not trust the fascia–tendon–soleus rebound regime, and by default it re-engages active control strategies, recruiting the phasic quadriceps…</p>
+        <p><strong>Clinical corollary: the recurrent soccer pattern.</strong> Over several months, Perig’s repeated Achilles injuries in soccer were not primarily a problem of intensity…</p>
+        <p><strong>A hybrid answer (2026-09-20, evening).</strong> The training-transfer literature (Bosch) supports the principle that, for the central nervous system, these are not two intensities of the same gesture but two distinct motor tasks…</p>
+        <p>The unified mechanism is feed-forward pre-activation of the triceps surae, triggered by plantar mechanoreceptors. Pacinian corpuscles act as a 20–1000 Hz band-pass filter…</p>
+      </div>
+      <ul class="facts">
+        <li>Readable only by people who read English well.</li>
+        <li>The 71-year-old and the footballer get the same page, in the same order.</li>
+        <li>The author’s doubts sit in passing sentences that are easy to miss.</li>
+        <li>A reader’s reply has nowhere to go.</li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <span class="tag after">After · the .ada</span>
+      <h2>The same chapter, packed for an AI to read</h2>
+<pre class="tree"><b>jp3-trois-p.ada</b>            <span>zip, 20 KB</span>
+├── manifest.json          <span>author, language "en", 6 sources, feedback</span>
+├── ada-usage.md           <span>how the host AI should behave</span>
+├── prompt.md              <span>the chapter, restructured, 11 KB</span>
+├── open_questions.md      <span>6 for the reader, 3 the author hasn't settled</span>
+└── source/MANUAL-s2.md    <span>the original chapter, unchanged</span></pre>
+      <ul class="facts">
+        <li>The reader asks in their own language. Nothing is translated in advance.</li>
+        <li>Each claim is tied to a source, or marked as the author’s own observation.</li>
+        <li>Unsettled points stay open, and the reader can send their view to the author.</li>
+        <li>The chapter carries its own rules for the AI that reads it.</li>
+        <li>The original text travels inside, so the reader can always ask for the exact words.</li>
+      </ul>
+      <div class="rule">
+        <span class="who">prompt.md · rule 1, taken from manual §2.3.1</span>
+        JP³ happens in place. Never say “go out”, “come back in” or “go” as metaphors of displacement while the reader is practising.
+      </div>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:20px" aria-label="Two readers">
+    <div class="intro">
+      <h2>Two readers, one file</h2>
+      <p>Both exchanges are illustrations we wrote by hand from the .ada’s content. They are not transcripts of a real session. Each one ends by showing what it drew on.</p>
+    </div>
+    <div class="dialogues">
+      <article class="dialogue" lang="fr">
+        <span class="reader-meta">Reader in French · 71, stiff on waking, daughter staying with her</span>
+        <div class="msg reader"><p>Je me lève raide, et ma fille habite chez moi en ce moment. Je n’ose pas sautiller dans le salon devant elle. C’est vraiment pour moi, ce truc ?</p></div>
+        <div class="msg host">
+          <p>Ce que vous décrivez, l’auteur l’a vécu lui-même : une pièce à soi ne suffit pas, il faut aussi ne pas se sentir regardé. Il appelle ça le seuil de solitude perceptive, et il le présente comme une vraie limite de la pratique. <span class="cite">[note de Perig, août 2026]</span></p>
+          <p>Il en a tiré une variante discrète. Debout à l’évier, le haut du corps immobile, on laisse le bassin rebondir doucement, genoux nettement fléchis. Personne ne le remarque, et le bassin apprend même mieux à amortir ainsi.</p>
+          <p>Pour la raideur du matin, commencez si lentement que ça vous paraît trop facile. Pour un corps raide au réveil, fléchir la cheville est déjà un exploit, et c’est très bien ainsi. Pieds nus sur un sol dur, si vous le pouvez.</p>
+          <p>Pendant quelle tâche debout pourriez-vous essayer, demain ?</p>
+        </div>
+        <p class="drew">Drew on: In Your Own Place (perceptive solitude, furtive JP³, “normal” relative to the starting state), At Your Own Pace (ultra-slow start), open question 3.</p>
+      </article>
+
+      <article class="dialogue" lang="es">
+        <span class="reader-meta">Reader in Spanish · amateur footballer, Achilles tendinopathy</span>
+        <div class="msg reader"><p>Juego al fútbol y tengo tendinitis en el Aquiles. ¿Debería dejar las botas y correr descalzo?</p></div>
+        <div class="msg host">
+          <p>No puedo darte un consejo médico: con dolor de tendón, consulta a un profesional. Sí puedo contarte lo que el autor sacó de un caso muy parecido al tuyo, el suyo propio.</p>
+          <p>Su lectura es que el problema no era la intensidad. Con tacos, suelas muy amortiguadas y calcetines, el gemelo y el sóleo no se preactivan a tiempo, y el tendón absorbe lo que absorbería el rebote. La amortiguación engaña la percepción del impacto <span class="cite">[Robbins &amp; Hanna 1987]</span>.</p>
+          <p>Aun así, no propone dejar las botas. Para el sistema nervioso, correr descalzo y correr calzado serían dos tareas motoras distintas. El riesgo vendría de la diferencia entre ambas <span class="cite">[atribuido a Bosch, fuente por precisar]</span>. Él usa cinco minutos descalzo, rápidos y ligeros, justo antes de calzarse.</p>
+          <p>Si quieres contarle tu experiencia al autor, puedo ayudarte a escribirle.</p>
+        </div>
+        <p class="drew">Drew on: In Place (barefoot as access condition, the soccer case, two motor tasks, barefoot primer), host rules 5 and 6, the feedback channel, a source flagged as incomplete in the manifest.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="note">
+    <p>Source: JP³ Central EN Manual, §2, commit <span class="mono">9c4c70d</span> of <a href="https://github.com/PerigGouanvic/JP3">github.com/PerigGouanvic/JP3</a>. Content under CC BY 4.0.</p>
+    <p>The file follows the layout of the first real .ada, <span class="mono">jp3.ada</span> (September 2026), which encoded an earlier version of JP³.</p>
+    <p>Download: <a href="jp3-trois-p.ada">jp3-trois-p.ada</a> · the same file as <a href="jp3-trois-p.ada.zip">.zip</a> for phones that do not recognise .ada · unpacked: <a href="src/manifest.json">manifest.json</a>, <a href="src/prompt.md">prompt.md</a>, <a href="src/open_questions.md">open_questions.md</a>, <a href="src/source/MANUAL-s2.md">source</a>.</p>
+  </footer>
+
+</div>
+</body>
+</html>

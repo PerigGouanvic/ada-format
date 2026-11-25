@@ -1,0 +1,56 @@
+{
+  "format_version": "0.1",
+  "subject": "JP³ — The Three Ps: anatomy of the constraint (Manual §2)",
+  "author": "Perig Gouanvic",
+  "created": "2026-11-25",
+  "mode": "encoded_from_source",
+  "language": "en",
+  "source": {
+    "uri": "https://github.com/PerigGouanvic/JP3/blob/9c4c70d/content/en/manual/MANUAL.md",
+    "citation": "Gouanvic, P. JP³ Central EN Manual, §2 'The Three Ps — anatomy of the constraint' (commit 9c4c70d, 2026-11-14). Verbatim copy in source/MANUAL-s2.md."
+  },
+  "scope": "This .ada covers only §2 of the manual. For anything outside it (mechanisms §4, protocol §5, doctrine §6), say that it lies outside this file and point to the full manual.",
+  "license": "CC BY 4.0",
+  "feedback": {
+    "text": {
+      "method": "mailto",
+      "target": "perig.gouanvic@gmail.com"
+    }
+  },
+  "citations": [
+    {
+      "id": "robbins_hanna",
+      "bibliography": "Robbins, S. E., & Hanna, A. M. (1987). Running-related injury prevention through barefoot adaptations. Medicine & Science in Sports & Exercise, 19(2), 148-156.",
+      "supports_claims": ["discomfort-impact illusion", "barefoot", "cushioning"],
+      "note": "The manual cites 'Robbins & Hanna (1980 onwards)' without a full reference. Reference completed from the BISp record https://www.bisp-surf.de/Record/PU198706030513."
+    },
+    {
+      "id": "robbins_gouw1990",
+      "bibliography": "Robbins, S. E., & Gouw, G. J. (1990). Athletic footwear and chronic overloading. Sports Medicine.",
+      "supports_claims": ["cushioned shoes", "impact"]
+    },
+    {
+      "id": "bosch_transfer",
+      "bibliography": "Bosch — training transfer and contextual specificity (reference to be specified by the author).",
+      "supports_claims": ["two distinct motor tasks", "barefoot vs shod regimes"],
+      "note": "Unresolved: the manual's reference list contains San-Millan & Bosch (2020), which is about metabolic flexibility, not training transfer. Treat this claim as the author's reading until the source is fixed."
+    },
+    {
+      "id": "hamilton2022",
+      "bibliography": "Hamilton, M. T., Hamilton, D. G., & Zderic, T. W. (2022). A potent physiological method to magnify and sustain soleus oxidative metabolism improves glucose and lipid regulation. iScience, 25(9), 104869.",
+      "doi": "10.1016/j.isci.2022.104869",
+      "supports_claims": ["soleus push-up", "SSPU", "via negativa core"]
+    },
+    {
+      "id": "reich_armour",
+      "bibliography": "Reich, W. Character Analysis (character armour, cuirasse caractérielle).",
+      "supports_claims": ["character armour", "normal relative to starting state"]
+    },
+    {
+      "id": "perig_field_notes",
+      "bibliography": "Perig Gouanvic, practice notes 2026-08-07 to 2026-09-20 (first-person observations, quoted in the manual).",
+      "supports_claims": ["perceptive solitude", "furtive JP³", "socks test", "sleep test", "forward-fall"],
+      "note": "First-person evidence. Present it as the author's lived observation, not as a study."
+    }
+  ]
+}
