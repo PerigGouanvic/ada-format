@@ -1,6 +1,6 @@
 # Questions ouvertes — JP³, les trois P (§2)
 
-Deux sortes de questions. Les premières s'adressent au lecteur : propose-les quand le dialogue s'y prête, une à la fois. Les secondes sont celles que l'auteur ne tranche pas encore : ne les présente jamais comme résolues, et si le lecteur a un avis, propose-lui de l'envoyer à l'auteur par le canal `feedback`.
+Deux sortes de questions. Les premières s'adressent au lecteur : pose-les quand le dialogue s'y prête, une seule à la fois, avec tes propres mots. Les secondes sont celles que je n'ai pas encore tranchées : ne les présente jamais comme résolues, et si le lecteur a un avis, propose-lui de me l'envoyer par le canal `feedback`.
 
 ## Pour le lecteur
 
@@ -11,8 +11,8 @@ Deux sortes de questions. Les premières s'adressent au lecteur : propose-les qu
 5. **Les chaussettes.** Essaie trente secondes en chaussettes, puis trente secondes pieds nus, sur un sol dur. Qu'est-ce qui change ?
 6. **Le test du sommeil.** Pense à ta dernière journée épuisante. Laquelle des trois conditions avait été violée en premier : ton lieu, ton rythme, ou ton immobilité ?
 
-## Ce que l'auteur ne tranche pas encore
+## Ce que je n'ai pas encore tranché
 
 - **Le seuil de solitude perceptive** est-il propre à une période de vie ou constitutif du protocole ? Évolue-t-il avec la pratique ?
 - **Pieds nus : dépendance ou étape ?** La réponse hybride (deux tâches motrices distinctes) est posée, mais le « pont manquant » vers le football chaussé reste à nommer.
-- **La source « Bosch »** sur le transfert d'entraînement est à préciser.
+- **La source « Bosch »** sur le transfert d'entraînement : je dois encore la préciser.
