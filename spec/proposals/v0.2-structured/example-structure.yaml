@@ -1,0 +1,112 @@
+ada: "0.1"
+
+meta:
+  title: "The .ada Format: When Books Can Finally Answer Back (excerpt)"
+  language: en
+  authors:
+    - name: Perig Gouanvic
+      contact: https://github.com/PerigGouanvic
+  version: "1.0-excerpt"
+  date: "2026-02-02"
+  license: CC-BY-SA-4.0
+  source:
+    kind: original
+    uri: https://periggouanvic.github.io/ada-format/
+  encoded_by:
+    who: Perig Gouanvic
+    method: ai-assisted
+    date: "2026-11-25"
+
+intent:
+  central_question: "Can a written document answer the questions of each reader, as Socrates said books never could?"
+  thesis: >
+    A document can carry, alongside its text, enough structure for a reader's
+    own AI to hold a faithful conversation with it. One source then serves
+    very different readers without being split into versions.
+  must_keep:
+    - "Accessibility is treated as the architecture of communication, not as an accommodation added afterwards."
+    - "The adapted readings never replace the source text."
+  audiences:
+    - id: skeptic
+      label: Skeptical technologist
+      wants: "Proof that this is not vaporware"
+      start_with: [trilemma]
+    - id: newcomer
+      label: "Reader who doesn't get it yet"
+      wants: "A concrete picture before any theory"
+      start_with: [socrates]
+
+concepts:
+  - id: phaedrus_objection
+    term: "Socrates' objection to writing"
+    definition: >
+      In Plato's Phaedrus, Socrates argues that written texts cannot answer
+      questions put to them: they always repeat the same thing.
+    plain: "A book can't answer you back when you don't understand it."
+  - id: trilemma
+    term: "the author's trilemma"
+    definition: >
+      An author must choose between simplifying (losing precision),
+      keeping complexity (excluding readers), or writing several versions
+      (too costly, and the versions drift apart).
+    requires: [phaedrus_objection]
+
+sections:
+  - id: socrates
+    title: Books Are Silent
+    role: context
+    uses: [phaedrus_objection]
+    text: |
+      In the Phaedrus, Socrates formulates a devastating objection to writing:
+      texts cannot dialogue. They "always maintain the same silence."
+      Incapable of adapting to their interlocutor, of reformulating according
+      to understanding, of responding to emergent questions.
+
+      The irony: we only know Socrates through Plato's writings, those frozen
+      texts he criticized.
+    summary: "Socrates' complaint: a text cannot adapt to its reader or answer questions."
+    levels:
+      plain: "Socrates said that books are bad teachers because they can't answer your questions."
+      expert: "Phaedrus 275d-e: a written text, like a painting, keeps a solemn silence when questioned, cannot choose its readers and cannot defend itself."
+    claims:
+      - id: c_silence
+        text: "Written texts cannot respond to the questions of their readers."
+        status: established
+        sources: ["Plato, Phaedrus 275d-e"]
+
+  - id: trilemma
+    title: "The Problem: Current Communication Failure"
+    role: claim
+    uses: [trilemma]
+    text: |
+      A researcher writes about crucial subjects, but in hermetic academic
+      jargon. The self-taught curious person abandons after three paragraphs;
+      the field activist looks in vain for a concrete application.
+
+      The author faces an impossible trilemma: simplify and lose precision,
+      maintain complexity and exclude legitimate readers, or create multiple
+      versions at prohibitive cost. The .ada format resolves this trilemma.
+    claims:
+      - id: c_resolves
+        text: "The .ada format resolves the author's trilemma."
+        status: hypothesis
+    difficulties:
+      - what: "Why not simply write a summary?"
+        help: "A summary is one more fixed version: it adds a branch to the trilemma instead of removing it."
+    links:
+      - to: socrates
+        relation: answers
+
+questions:
+  - q: "Isn't this just a summary tool?"
+    answer: "No. A summary replaces the text; an .ada reading keeps returning to it and says where each answer comes from."
+    see: [trilemma]
+
+decoder:
+  voice: first_person_author
+  default_entry: socrates
+
+feedback:
+  contact: https://github.com/PerigGouanvic/ada-format/issues
+  invite: true
+  ask_for: [unclear_passages, disagreements]
