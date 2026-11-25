@@ -1,4 +1,4 @@
-# JP³ : premier passage de l'entretien (phase 1 et premières questions)
+# JP³ : préparation de l’entretien (phase 1 faite à l’avance)
 
 Test du prompt [`encoder/entretien-auteur.md`](../../../../encoder/entretien-auteur.md)
 sur le manuel JP³ (`content/en/manual/MANUAL.md`, dépôt PerigGouanvic/JP3,
