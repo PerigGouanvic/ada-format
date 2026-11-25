@@ -25,8 +25,9 @@ by one, but the file is meant to be handed whole to an AI.
 |---|---|---|
 | `manifest.json` | yes | Metadata: format version, subject, author, language, mode, feedback channel, citations. |
 | `ada-usage.md` | yes | Instructions for the AI that opens the file (the "host AI"). |
-| `prompt.md` | yes | The core content, written for the host AI. |
-| `open_questions.md` | no | Socratic questions the host AI may put to the reader. |
+| `prompt.md` | yes, once crystallised | The core content, written for the host AI. May be absent or partial while a file is growing (see §2.3). |
+| `open_questions.md` | no | Socratic questions: to the reader in a finished file, to the author while the file grows (see §6). |
+| `deposits/` | in `grown_from_deposits` mode | Raw, dated deposits from the author (see §2.3). |
 | `source/` | recommended | The original text, unchanged (for example `source/article.md`). See §5.1. |
 | `attachments/` | no | Complementary reference documents. |
 | `media/` | no | Images, diagrams. |
@@ -67,6 +68,36 @@ Until this is settled, v0.1 recommends:
 Whether to keep `.ada` as the extension at all, given the collision with the
 Ada language, is an open question for v0.2.
 
+### 2.3 Two ways a file comes into being
+
+The `mode` field of the manifest (§3) records how the content came about.
+These two modes were set by the author of the format in July 2026, before the
+first file was made; `jp3.ada` uses the first.
+
+- **`encoded_from_source`**: an existing text is turned into an `.ada`. The
+  original goes in `source/`; `prompt.md` is written from it.
+- **`grown_from_deposits`**: the file is born **without a source text**. The
+  author drops ideas, intuitions, voice transcriptions and screenshots into
+  `deposits/`, as they come. Between deposits, the AI acts as the author's
+  Socratic partner: it reacts to what was deposited with questions, kept in
+  `open_questions.md` to be put back to the author at the next session. Over
+  these exchanges the material **crystallises** into `prompt.md`.
+
+The mode is a **state, not an identity**: a file grown from deposits can later
+be published and read like any other, and an encoded file can keep receiving
+deposits. The design rationale is that `.ada` should be a tool for writing a
+literature that would not have existed without it, not only a tool for
+accessing existing texts. One `.ada` per theme, not one global notebook.
+
+Deposits are named so that their order is clear, for example
+`deposits/2026-07-28T14-05_idea.md` or `deposits/2026-07-28_voice.txt`;
+images and other files may sit next to them. **[H]** A deposit is never edited
+after the fact; corrections are new deposits.
+
+**[H]** A growing file is a working file for its author. It conforms to v0.1
+(§7) without `prompt.md`, but should not be handed to readers until
+`prompt.md` exists.
+
 ## 3. `manifest.json`
 
 Validated by [`manifest-v0.1.schema.json`](manifest-v0.1.schema.json).
@@ -80,7 +111,7 @@ Validated by [`manifest-v0.1.schema.json`](manifest-v0.1.schema.json).
 | `author` | yes | Author's name (string). |
 | `language` | yes | Language of the content, as a BCP 47 tag (`fr`, `en`, `fr-CA`). |
 | `created` | no | Date of creation, `YYYY-MM-DD`. |
-| `mode` | no | How the content relates to a source text. `encoded_from_source` **[JP³]**: the content was written for the AI from an existing text. `original` **[H]**: the content is itself the work. |
+| `mode` | no | How the content came about (§2.3): `encoded_from_source` **[JP³]** or `grown_from_deposits`. It may change over the life of a file. |
 | `feedback` | no | Return channel to the author, keyed by kind of message. **[JP³]** uses `feedback.text = {method: "mailto", target: "<address>"}`. **[H]** `method` may also be `url` (a form or an issue tracker). |
 | `citations` | no | Sources the author vouches for: `{id, bibliography, doi?, url?, supports_claims[]}`. |
 
@@ -159,6 +190,17 @@ organised as follows, and v0.1 recommends that shape without requiring it:
   has no time", "for the scientist", "for the health practitioner"...), each
   saying what matters to that reader, what to start with and what to avoid.
   These are hints; the host AI will meet readers the author did not imagine.
+
+  The author's interview protocol (September 2026) recommends defining
+  readers by **cognitive structure rather than biography**: not "a retired
+  nurse", but "someone whose working life was organised around keeping
+  physiological parameters stable in bodies in crisis". What makes such a
+  reader understand is **homology**, a bridge from the text to something in
+  their own experience. While preparing `prompt.md`, each simulated reader
+  reports in three registers: *follows* ("this is like [something I have
+  lived]"), *blocked* ("the bridge between [A] and [B] is missing") and
+  *unsure* ("I don't know if someone like me would know [X]: do you assume
+  it?"). The protocol measures what is there, not only what is missing.
 - **What it is not**: the misreadings the author has already met.
 - **Destination**: where the author hopes the reader ends up.
 
@@ -190,17 +232,28 @@ include its original article; adding it is the first update to make.
 
 ## 6. `open_questions.md`
 
-**[JP³]** A numbered list of questions addressed **to the reader**, meant to
-open the dialogue ("Which activity of your daily life could become a session
-without any change on your part?"). They are not FAQ entries: they invite the
-reader to think, not to receive an answer.
+Socratic questions, whose addressee depends on the state of the file.
+
+- **In a finished file** **[JP³]**: a numbered list of questions addressed
+  **to the reader**, meant to open the dialogue ("Which activity of your daily
+  life could become a session without any change on your part?"). They are not
+  FAQ entries: they invite the reader to think, not to receive an answer.
+- **While the file grows** (`grown_from_deposits`): questions the AI generated
+  in reaction to the deposits, waiting to be put **to the author** at the next
+  session. Once answered, they feed `prompt.md`.
+
+**[H]** When a file holds both kinds, the author's questions go under a
+separate heading (for example `## For the author`), which the host AI never
+puts to readers. The author arrives with answers; the AI helps find all the
+questions; the file keeps both.
 
 ## 7. Conformance
 
 A file conforms to v0.1 if:
 
 1. it is a valid zip archive with the extension `.ada` or `.ada.zip`;
-2. it contains `manifest.json`, `ada-usage.md` and `prompt.md` at its root;
+2. it contains `manifest.json` and `ada-usage.md` at its root, and either
+   `prompt.md`, or (in `grown_from_deposits` mode) a non-empty `deposits/`;
 3. `manifest.json` validates against `manifest-v0.1.schema.json`;
 4. every `claims[].citations` entry, if present, names an existing
    `citations[].id`.
@@ -224,10 +277,12 @@ python3 tools/validate_ada.py path/to/file.ada
   (sections, concepts, claim status, anticipated questions) sit next to
   `prompt.md`? A first draft is in
   [`proposals/v0.2-structured/`](proposals/v0.2-structured/).
-- **Encoding prompt.** v0.1 says what a file contains, not yet how an author
-  produces it. `jp3.ada` was produced from a dense summary
-  (`drafts/jp3-resume-ada.md` in the JP3 repository); that process should be
-  written down.
+- **Encoding device.** v0.1 says what a file contains, not yet how an author
+  produces it. The author's own design (July and September 2026) sets the
+  direction: never produce an `.ada` in one pass ("creating the zip directly
+  from the source is making a PDF in a zip"); a deposit mode with zero
+  friction, separate from an "interview me" mode on demand; simulated readers
+  defined by cognitive structure. Its full brief has not been published yet.
 - **Extension and media type.** Keep `.ada` despite the Ada language, or
   move to another extension; register a media type or not (see §2.1).
 - **Long works.** One archive per work, or per chapter with an index?

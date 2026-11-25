@@ -14,7 +14,7 @@ import jsonschema
 SCHEMA = json.loads(
     (pathlib.Path(__file__).resolve().parent.parent / "spec" / "manifest-v0.1.schema.json").read_text()
 )
-REQUIRED = ["manifest.json", "ada-usage.md", "prompt.md"]
+REQUIRED = ["manifest.json", "ada-usage.md"]
 
 
 def check(path):
@@ -27,9 +27,23 @@ def check(path):
         return report(path, [f"not a readable zip archive ({e})"], notes)
     names = set(z.namelist())
     errors += [f"missing {n} at the archive root" for n in REQUIRED if n not in names]
+    mode = None
+    if "manifest.json" in names:
+        try:
+            mode = json.loads(z.read("manifest.json").decode("utf-8")).get("mode")
+        except Exception:
+            pass
+    has_deposits = any(n.startswith("deposits/") and not n.endswith("/") for n in names)
+    if "prompt.md" not in names:
+        if mode == "grown_from_deposits" and has_deposits:
+            notes.append("no prompt.md yet: growing file, not ready for readers")
+        elif mode == "grown_from_deposits":
+            errors.append("grown_from_deposits mode needs prompt.md or a non-empty deposits/")
+        else:
+            errors.append("missing prompt.md at the archive root")
     if "open_questions.md" not in names:
         notes.append("no open_questions.md (optional)")
-    if not any(n.startswith("source/") and not n.endswith("/") for n in names):
+    if mode != "grown_from_deposits" and not any(n.startswith("source/") and not n.endswith("/") for n in names):
         notes.append("no original text in source/ (recommended, see spec section 5.1)")
     if "manifest.json" in names:
         try:
